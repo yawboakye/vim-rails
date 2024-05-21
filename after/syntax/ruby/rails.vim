@@ -49,6 +49,19 @@ elseif s:path =~# '/app/models/.*\.rb$'
   syn match rubyMacro '\v<%(validate|has_rich_text|has_secure_password|has_secure_token|has_one_attached|has_many_attached|delegated_type)>[!?:]@!'
 endif
 
+if s:path =~# '.*\.rb$'
+  syn match rubyMacro '\v<%(debugger)>[!?:]@!'
+  syn match rubyMacro '\v<%(sig|params|returns|nilable|void)>[!?:]@!'
+endif
+
+if s:path =~# '.*/generators/.*\.rb$'
+  syn match rubyMacro '\v<%(source_root|create_file|copy_file|gsub_file|insert_into_file|inside|invoke|desc|generate|rails_command|create_table|say|run|uncomment_lines|directory|empty_directory|template|argument|in_root|class_option|migration_template)>[!?:]@!'
+endif
+
+if s:path =~# '.*/railtie.rb$'
+  syn match rubyMacro '\v<%(initializer)>[!?:]@!'
+endif
+
 if s:path =~# '/app/jobs/.*\.rb$'
   syn match rubyMacro '\v<%(queue_as)>[!?:]@!'
   syn match rubyExceptionMacro '\v<%(rescue_from|retry_on|discard_on)>[!?:]@!'
@@ -123,7 +136,7 @@ if s:path =~# '\v/app/%(controllers|helpers|mailers)/.*\.rb$|/app/views/|/test/(
   syn match rubyUrlHelper '\v<%(url_for|polymorphic_path|polymorphic_url|edit_polymorphic_path|edit_polymorphic_url|new_polymorphic_path|new_polymorphic_url)>[!?:]@!'
 endif
 
-if s:path =~# '/db/migrate/.*\.rb$\|/db/schema\.rb$'
+if s:path =~# '/db/migrate/.*\.rb$\|/db/schema\.rb$|/lib/generators/templates/.*\.rb$'
   syn match rubySchema '\v<%(create_table|change_table|drop_table|rename_table|create_join_table|drop_join_table)>[!?:]@!'
   syn match rubySchema '\v<%(create_schema|drop_schema)>[!?:]@!'
   syn match rubySchema '\v<%(add_column|rename_column|change_column|change_column_default|change_column_null|remove_column|remove_columns)>[!?:]@!'
